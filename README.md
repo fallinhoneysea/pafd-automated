@@ -1,5 +1,19 @@
 # 自动填写 PAFD
 
+## 说明
+
+**请务必阅读**
+
+本仓库为本人对pafd-automated的修改，如果需要免费的版本，请参考https://github.com/FDUCSLG/pafd-automated
+
+## 对验证码识别的修改
+
+说明：本次修改使用了[图鉴](http://ttshitu.com/)的付费API，你需要自己注册你的账号，但本人将会尽快训练模型来代替。在原来的基础上，你还需要设置CODE_ID:图鉴的账号，CODE_PSW:图鉴的密码这两个环境变量。
+
+## 原README
+
+每60天要记得更新一下仓库
+
 credit: 这份代码受 [daily_fudan](https://github.com/k652/daily_fudan) 启发，并参考了其实现方式，在此表示感谢。
 
 首先请注册一个 GitHub 帐号，然后点击右上角的 fork 创建一个副本。
