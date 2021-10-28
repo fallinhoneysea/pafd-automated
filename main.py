@@ -194,30 +194,34 @@ class Zlapp(Fudan):
         province = self.last_info["province"]
         city = self.last_info["city"]
         district = geo_api_info["addressComponent"].get("district", "")
-        print("◉正在识别验证码......")
-        code = self.validate_code()
-        print("◉验证码为:", code)
-        self.last_info.update(
-            {
-                "tw": "13",
-                "province": province,
-                "city": city,
-                "area": " ".join((province, city, district)),
-                # "sfzx": "1",  # 是否在校
-                # "fxyy": "",  # 返校原因
-                "code": code,
+        while True:
+            print("◉正在识别验证码......")
+            code = self.validate_code()
+            print("◉验证码为:", code)
+            self.last_info.update(
+                {
+                    "tw": "13",
+                    "province": province,
+                    "city": city,
+                    "area": " ".join((province, city, district)),
+                    # "sfzx": "1",  # 是否在校
+                    # "fxyy": "",  # 返校原因
+                    "code": code,
 
-            }
-        )
-        # print(self.last_info)
-        save = self.session.post(
-            'https://zlapp.fudan.edu.cn/ncov/wap/fudan/save',
-            data=self.last_info,
-            headers=headers,
-            allow_redirects=False)
+                }
+            )
+            # print(self.last_info)
+            save = self.session.post(
+                'https://zlapp.fudan.edu.cn/ncov/wap/fudan/save',
+                data=self.last_info,
+                headers=headers,
+                allow_redirects=False)
 
-        save_msg = json_loads(save.text)["m"]
-        print(save_msg, '\n\n')
+            save_msg = json_loads(save.text)["m"]
+            print(save_msg, '\n\n')
+            time.sleep(0.1)
+            if(json_loads(save.text)["e"] != 1):
+                break
 
 
 def get_account():
