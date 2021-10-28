@@ -166,7 +166,7 @@ class Zlapp(Fudan):
             'image': img,
             'username': self.code_id,
             'password': self.code_psw,
-            'typeid': 3
+            'typeid': 2
         }
         result = json_loads(post(
             "http://api.ttshitu.com/base64", json=data).text)
